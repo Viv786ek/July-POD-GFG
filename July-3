@@ -1,0 +1,44 @@
+class Solution{
+public:
+   vector<string> ans;
+   void fun(string &s,unordered_map<string,int> &mp,int n,int j,string &tt)
+   {
+       if(j>=n)
+       {
+         ans.push_back(tt);
+         return;
+       }
+       string tmp;
+       for(int i=j;i<n;i++)
+       {
+           tmp.push_back(s[i]);
+           if(mp.find(tmp)!=mp.end())
+           {
+               string curr=tt;
+               if(i==n-1)
+               {
+                   tt=tt+tmp;
+               }
+               else
+               {
+                   tt=tt+tmp+" "; 
+               }
+               fun(s,mp,n,i+1,tt);
+               tt=curr;
+           }
+       }
+   }
+   vector<string> wordBreak(int n, vector<string>& dict, string s)
+   {
+        unordered_map<string,int> mp;
+        for(auto &it: dict)
+        {
+            mp[it]++;
+        }
+        int j=0;
+        string tt="";
+        int nn=s.size();
+        fun(s,mp,nn,j,tt);
+        return ans;
+   }
+};
