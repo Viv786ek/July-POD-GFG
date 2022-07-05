@@ -1,0 +1,19 @@
+int countnode(Node*temp,int l,int r){
+    int count = 0;
+    if(temp==NULL)return 0;
+    if(temp->data>=l && temp->data<=r){
+        count++;
+        count+= countnode(temp->left,l,r);
+        count+= countnode(temp->right,l,r);
+    }
+    if(temp->data<l)count+= countnode(temp->right,l,r);
+    if(temp->data>r)count+= countnode(temp->left,l,r);
+    return count;
+}
+class Solution{
+public:
+    int getCount(Node *root, int l, int h)
+    {
+        return countnode(root,l,h);
+    }
+};
