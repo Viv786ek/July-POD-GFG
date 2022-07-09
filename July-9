@@ -1,0 +1,24 @@
+class Solution{
+  public:
+    /* The below method print the required sum of polynomial
+    p1 and p2 as specified in output  */
+    Node* addPolynomial(Node *p1, Node *p2)
+    {
+        map<int,int,greater<int>>mp;
+        while(p1){
+            mp[p1->pow]+=p1->coeff;
+            p1=p1->next;
+        }
+        while(p2){
+            mp[p2->pow]+=p2->coeff;
+            p2=p2->next;
+        }
+        Node *temp=new Node(NULL,NULL);
+        Node *ans=temp;
+        for(auto i:mp){
+            temp->next=new Node(i.second,i.first);
+            temp=temp->next;
+        }
+        return ans->next;
+    }
+};
