@@ -1,0 +1,19 @@
+
+continuingtheimpetus132
+8 minutes ago
+
+vector<int> reaching_height(int n, int a[]) {
+    vector<int> res;
+    sort(a, a + n);
+    int sz = 0, left = 0, right = n-1;
+    if(a[left] == a[right] && n > 1)
+    return vector<int>{-1};
+    while(sz < n){
+        res.push_back(a[right]);
+        if(++sz < n)
+        res.push_back(a[left]);
+        sz++;
+        right--, left++;
+    }
+    return res;
+}
