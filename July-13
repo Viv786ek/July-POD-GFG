@@ -1,0 +1,25 @@
+int assignmentProblem(int Arr[], int n)
+     {
+        vector<vector<int>>price(n,vector<int>(n));
+        vector<int>per(n);
+        int idx=0,ans=1e9;
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<n;j++)
+            {
+                price[i][j]=Arr[idx];
+                idx++;
+            }
+            per[i]=i;
+        }
+        do
+        {
+            int t_ans = 0;
+            for(int i=0;i<n;i++)
+            {
+                t_ans+=(price[per[i]][i]);
+            }
+            ans=min(ans,t_ans);
+        }while(next_permutation(per.begin(),per.end()));
+    return ans;
+    }
