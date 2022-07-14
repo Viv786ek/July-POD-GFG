@@ -1,0 +1,11 @@
+void transformTree(struct Node *root)
+    {
+        //code here
+        if(root){
+           transformTree(root->right);
+           int temp=root->data;
+           root->data=prevSum;
+           prevSum+=temp;
+           transformTree(root->left);
+       }
+    }
