@@ -1,0 +1,14 @@
+int ans = -1;
+int findCeil(Node* root, int input) {
+    if(!root)
+        return ans;
+    if(root->data == input){
+        ans = root->data;
+        return ans;
+    }
+    if(input < root->data){
+        ans = root->data;
+        return findCeil(root->left, input);
+    }
+    return findCeil(root->right, input);
+}
