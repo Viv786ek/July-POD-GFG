@@ -1,0 +1,10 @@
+vector<int> constructLowerArray(int *arr, int n) {
+	   vector<int>res, temp; 
+	    for(int i = n-1;  i >= 0; i--){
+	        auto loc = lower_bound(temp.begin(),temp.end() , arr[i]) - temp.begin(); 
+	        res.push_back(loc); 
+	        temp.insert(temp.begin() + loc , arr[i]); // Storing in sorted order. 
+	    }
+	    reverse(res.begin(), res.end());
+	    return res; 
+	}
