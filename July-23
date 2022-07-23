@@ -1,0 +1,29 @@
+class Solution{
+    public:
+        vector<vector<int>> v{
+                {3,2},
+                {-5,-10},
+                {-20,5}
+                
+            };
+        
+        int maxLevel(int h,int m)
+        {
+            // code here
+            vector<vector<int>> dp(2001,vector<int> (2001,-1));
+            return func(h,m,-1,dp);
+            
+        }
+        int func(int h,int m,int f,vector<vector<int>> &dp){
+            if(h<=0 || m<=0) return -1;
+            
+            if(dp[h][m]!=-1) return dp[h][m];
+            int mx = INT_MIN;
+             
+            for(int i=0;i<3;i++){
+                if(i!=f)
+                mx = max(mx,1+func(h+v[i][0],m+v[i][1],i,dp));
+            }
+            return dp[h][m] = mx;
+        }
+};
