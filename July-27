@@ -1,16 +1,19 @@
-  int minOperations(int[] arr, int n, int k) {
-       PriorityQueue<Integer> pq = new PriorityQueue<>();
-       int res=0;
+int minOperations(int arr[], int n, int k) {
+       // code here
+       priority_queue<int,vector<int>,greater<int>> min_heap;
+       int cnt=0;
        for(int i=0;i<n;i++)
        {
-           pq.add(arr[i]);
+           min_heap.push(arr[i]);
        }
-       while(pq.peek()<k)
+       while(min_heap.top() < k && !min_heap.empty())
        {
-           int a=pq.remove();
-           a=a+pq.remove();
-           pq.add(a);
-           res++;
+           int n1 = min_heap.top();
+           min_heap.pop();
+           int n2 = min_heap.top();
+           min_heap.pop();
+           min_heap.push(n1+n2);
+           cnt++;
        }
-       return res;
+       return cnt;
    }
