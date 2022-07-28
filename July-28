@@ -1,0 +1,27 @@
+ int M = 1000000007;
+vector<vector<long long>> dp(1001, vector<long long>(1001,-1));
+
+class Solution{
+public:
+    
+    long long f(int n, int k) {
+        if(k > n) return dp[n][k] = 0;
+        
+        if(n == k || k == 0)
+            return dp[n][k] = 1;
+            
+        if(dp[n][k] != -1)
+            return dp[n][k];
+            
+        return dp[n][k] = ((f(n-1,k)%M)+(f(n-1,k-1)%M))%M;
+    }
+    
+    int knots(int m, int n, int k){
+        int mm = max(m,n);
+        f(mm,k);
+        
+        long long ans = (dp[m][k]*dp[n][k])%M;
+        
+        return (int)ans;
+    }
+};
