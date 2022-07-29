@@ -1,0 +1,45 @@
+bool isPrime(int x){
+        if(x ==0 || x==1)
+        return false;
+        for(int i=2;i<=x/2;i++){
+            if(x%i==0)
+            {
+                return false;
+            }
+            
+        }
+        return true;
+    }
+    int dfs( vector<int> temp[], int i, int sen[]){
+        if(temp[i][0]==-1)
+        {
+            sen[i]=0;
+        }
+        if(sen[i]==-1){
+            sen[i]=1+dfs(temp,temp[i][0],sen);
+        }
+        return sen[i];
+    }
+    int firingEmployees(vector<int> &arr, int n){
+        int ans=0;
+        int sen[n];
+        for(int i=0;i<n;i++)
+        sen[i]=-1;
+        vector<int> temp[n];
+        for(int i=0;i<n;i++){
+            temp[i].push_back(arr[i]-1);
+        }
+        for(int i=0;i<n;i++){
+            if(sen[i]==-1)
+            sen[i]=dfs(temp,i,sen);
+        }
+         for(int i=0;i<n;i++){
+             if(arr[i]==0)
+             continue;
+             int k=i+sen[i]+1;
+             if(isPrime(k))
+             ans++;
+             
+         }
+         return ans;
+    }
