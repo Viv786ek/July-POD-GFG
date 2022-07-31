@@ -1,0 +1,15 @@
+bool check_elements(int arr[], int n, int A, int B)
+	{
+		// Your code goes here
+		vector<bool> vis(B-A+1,false); 
+		int c = B-A+1;
+        for(int i=0;i<n;i++){
+            if(arr[i]>=A && arr[i]<=B){
+                if(!vis[arr[i]-A]){
+                    c--;
+                    vis[arr[i]-A] = true;
+                } 
+            }
+        }
+        return c==0;
+	}
